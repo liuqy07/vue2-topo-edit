@@ -19,27 +19,14 @@ module.exports = {
     module: {
       rules: [
         {
-          test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+          test: /\.(png|jpe?g|gif|webp)/,
           include: [path.resolve(__dirname, "packages/vue2-topo-edit/img")],
           exclude: [path.resolve(__dirname, 'src/assets')],
-
-           type: 'asset',
-            parser: {
-              dataUrlCondition: {
-                maxSize: 1 // 8KB
-              }
-            },
-            generator: {
-              filename: 'img/[name].[hash:8][ext]'
-            }
-
-          // use: {
-          //   loader: 'url-loader',
-          //   options: {
-          //     // limit: 8192,
-          //     name: 'img/[name].[hash:8].[ext]'
-          //   }
-          // }
+          type: 'asset',
+          parser: { dataUrlCondition: {
+            maxSize: Infinity 
+          } }, // 关键修改点
+          generator: { filename: 'img/[name].[hash:8][ext]' }
         },
         {
           test: /\.js$/,
