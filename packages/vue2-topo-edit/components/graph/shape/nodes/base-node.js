@@ -758,12 +758,12 @@ export default (G6, vue) => {
           let imgurl
            let url
           if (type == 'img-cloud') {
-             url = new URL ('@/assets/images/topo/vector.png', import.meta.url).href
+             url = '' //new URL ('@/assets/images/topo/vector.png', import.meta.url).href
           } else {
             const level = cfg?.level ?? cfg.name
              cfg.radio == 1 ? imgurl = cfg.img : imgurl = imglist.find((_item) => _item.level == level)?.imgsrc ?? 'p_1.png'
              const path =  imgurl.replace('.png', '.svg')
-              url = require(`@/assets/images/svg/${path}`)
+              url = '' //require(`@/assets/images/svg/${path}`)
             //  url = new URL(`../../../../assets/images/svg/${path}`, import.meta.url).href
           }
             item1.attr({

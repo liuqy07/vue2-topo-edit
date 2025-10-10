@@ -38,7 +38,7 @@ function drawShape(cfg, group) {
         y: (startPoint.y + endPoint.y) / 2 - 10,
         width: 20,
         height: 20,
-        img: require("@/assets/images/topo/163.png"),
+        img: '', // require("@/assets/images/topo/163.png"),
         // new URL ("@/assets/images/topo/topo_new/interrupt.png", import.meta.url).href,
         zIndex: 100,
    

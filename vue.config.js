@@ -21,7 +21,7 @@ module.exports = {
         {
           test: /\.(png|jpe?g|gif|webp)/,
           include: [path.resolve(__dirname, "packages/vue2-topo-edit/img")],
-          exclude: [path.resolve(__dirname, 'src/assets')],
+          exclude: [path.resolve(__dirname, 'src/assets/images/topo')],
           type: 'asset',
           parser: { dataUrlCondition: {
             maxSize: Infinity 

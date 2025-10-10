@@ -93,9 +93,9 @@
             draggable="true"
             data-label=""
             data-shape="img-cloud"
-            data-img="@/assets/images/topo/vector.png"
+            data-img="@@/vue2-topo-edit/img/vector.png"
           >
-            <img src="@/assets/images/topo/vector.png" alt="" />
+            <img src="@@/vue2-topo-edit/img/vector.png" alt="" />
             <span>CN2</span>
           </div>
         </div>
@@ -491,9 +491,9 @@ export default {
   methods: {
     getSvg(imgsrc) {
       console.log("imgsrc",imgsrc)
-      // return require('@@/vue2-topo-edit/img/163.png')
-      const path = imgsrc.replace('.png', '.svg')
-      return  require(`@/assets/images/svg/${path}`)
+      return require(`@@/vue2-topo-edit/img/${imgsrc}`)
+      // const path = imgsrc.replace('.png', '.png')
+      // return  require(`@/assets/images/svg/${path}`)
         //  const url =  process.env.NODE_ENV === 'production' ? ( 'svg/' + imgsrc).replace('.png', '.svg'): `../../assets/images/svg/${imgsrc.replace('.png', '.svg')}`
         // if( process.env.NODE_ENV === 'production'){
         //   return url

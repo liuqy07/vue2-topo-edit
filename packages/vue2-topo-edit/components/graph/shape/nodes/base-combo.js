@@ -476,7 +476,7 @@ export default (G6) => {
             y: -style.size[1],
             width: style.size[0],
             height: style.size[1],
-            img:   require('@/assets/images/topo/computer.png'), //new URL ("../../../../../../assets/images/topo/comclound.png", import.meta.url).href, // 替换为实际图片 URL //require("../../../../../../assets/icons/svg/abnormalTraffic.svg").default,
+            // img:   require('@/assets/images/topo/computer.png'), //new URL ("../../../../../../assets/images/topo/comclound.png", import.meta.url).href, // 替换为实际图片 URL //require("../../../../../../assets/icons/svg/abnormalTraffic.svg").default,
             cursor: "pointer",
           },
           name: "combo-bg-image", // 标识名称

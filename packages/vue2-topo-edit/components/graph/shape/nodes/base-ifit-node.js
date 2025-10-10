@@ -239,7 +239,7 @@ export default (G6, vue) => {
             item.remove()
           })
         }
-        const imgalarm = require("@/assets/images/topo/163.png")
+        const imgalarm = '' // require("@/assets/images/topo/163.png")
         // new URL('../../assets/images/topo/ifitTopo_new/warning.png', import.meta.url).href
 
         group1.addShape('image', {
@@ -279,7 +279,7 @@ export default (G6, vue) => {
           // item.remove();
         })
         const urgentLenth = (urgent > serious ? urgent : serious).toString().length
-        const imgalarm = require('@/assets/images/topo/163.png')
+        // const imgalarm = require('@/assets/images/topo/163.png')
         // new URL('../../../../../../assets/images/一级告警.png', import.meta.url).href
         group1.addShape('image', {
           attrs: {
@@ -287,7 +287,7 @@ export default (G6, vue) => {
             y: -height / 2 - 10,
             width: 18,
             height: 18,
-            img: imgalarm,
+            // img: imgalarm,
             opacity: 1
           },
           className: 'node-alarm',
