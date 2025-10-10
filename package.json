@@ -1,0 +1,70 @@
+{
+  "name": "vue2-topo-edit",
+  "version": "2.0.71",
+  "description": "支持 Vue 2 的 Vue.js 单文件组件模板",
+  "main": "lib/vue2-topo-edit.umd.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "lib": "vue-cli-service build --target lib --name vue2-topo-edit --dest lib packages/index.js",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tudan110/vue2-sfc-template.git"
+  },
+  "keywords": [
+    "vue2-sfc-template"
+  ],
+  "author": "tudan110",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tudan110/vue2-sfc-template/issues"
+  },
+  "dependencies": {
+    "@antv/g6": "^4.7.14",
+    "core-js": "^3.8.3",
+    "element-ui": "2.15.8",
+    "file-loader": "^6.2.0",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo-loader": "^4.0.0",
+    "url-loader": "^4.1.1",
+    "vue": "^2.6.14"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "element-ui": "2.15.8",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "sass": "1.32.13",
+    "sass-loader": "10.1.1",
+    "svg-url-loader": "^8.0.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
