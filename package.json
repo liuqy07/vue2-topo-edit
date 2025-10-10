@@ -1,6 +1,6 @@
 {
   "name": "vue2-topo-edit",
-  "version": "2.0.71",
+  "version": "2.0.73",
   "description": "支持 Vue 2 的 Vue.js 单文件组件模板",
   "main": "lib/vue2-topo-edit.umd.js",
   "files": [
@@ -28,10 +28,6 @@
     "@antv/g6": "^4.7.14",
     "core-js": "^3.8.3",
     "element-ui": "2.15.8",
-    "file-loader": "^6.2.0",
-    "svg-sprite-loader": "^6.0.11",
-    "svgo-loader": "^4.0.0",
-    "url-loader": "^4.1.1",
     "vue": "^2.6.14"
   },
   "devDependencies": {
@@ -46,6 +42,10 @@
     "sass": "1.32.13",
     "sass-loader": "10.1.1",
     "svg-url-loader": "^8.0.0",
+    "file-loader": "^6.2.0",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo-loader": "^4.0.0",
+    "url-loader": "^4.1.1",
     "vue-template-compiler": "^2.6.14"
   },
   "eslintConfig": {

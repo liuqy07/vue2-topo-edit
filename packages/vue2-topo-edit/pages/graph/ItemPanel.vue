@@ -490,9 +490,10 @@ export default {
 
   methods: {
     getSvg(imgsrc) {
-      return require('../../img/163.png')
-      // const path = imgsrc.replace('.png', '.svg')
-      // return  require(`@/assets/images/svg/${path}`)
+      console.log("imgsrc",imgsrc)
+      // return require('@@/vue2-topo-edit/img/163.png')
+      const path = imgsrc.replace('.png', '.svg')
+      return  require(`@/assets/images/svg/${path}`)
         //  const url =  process.env.NODE_ENV === 'production' ? ( 'svg/' + imgsrc).replace('.png', '.svg'): `../../assets/images/svg/${imgsrc.replace('.png', '.svg')}`
         // if( process.env.NODE_ENV === 'production'){
         //   return url
