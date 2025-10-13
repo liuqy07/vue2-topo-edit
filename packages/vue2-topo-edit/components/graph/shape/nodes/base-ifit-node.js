@@ -239,9 +239,7 @@ export default (G6, vue) => {
             item.remove()
           })
         }
-        const imgalarm = '' // require("@/assets/images/topo/163.png")
-        // new URL('../../assets/images/topo/ifitTopo_new/warning.png', import.meta.url).href
-
+        const imgalarm = '' //require('../../../../../../assets/images/topo/ifitTopo_new/warning.png')
         group1.addShape('image', {
           attrs: {
             x: width / 2,
@@ -279,15 +277,14 @@ export default (G6, vue) => {
           // item.remove();
         })
         const urgentLenth = (urgent > serious ? urgent : serious).toString().length
-        // const imgalarm = require('@/assets/images/topo/163.png')
-        // new URL('../../../../../../assets/images/一级告警.png', import.meta.url).href
+        const imgalarm = ''
         group1.addShape('image', {
           attrs: {
             x: -width / 4 + 20,
             y: -height / 2 - 10,
             width: 18,
             height: 18,
-            // img: imgalarm,
+            img: imgalarm,
             opacity: 1
           },
           className: 'node-alarm',
@@ -449,7 +446,7 @@ export default (G6, vue) => {
           const { width, height } = attrs
           const imgsplit = cfg.img?.split('/') ?? []
           const imgurl = imgsplit[imgsplit.length - 1] ?? cfg.img
-          const url ='' + 'svg/' + imgurl.replace('.png', '.svg')
+          const url = process.env.BASE_URL + 'svg/' + imgurl.replace('.png', '.svg')
           console.log('url', url)
           // const img = require(`@/assets/images/topo/ifitTopo_new/${imgurl}`) // require("@/assets/images/topo/ifitTopo_new/" + imgurl);
           group.addShape('image', {
@@ -603,7 +600,7 @@ export default (G6, vue) => {
             // }
            const imgsplit = cfg.img?.split('/') ?? []
            const imgurl = imgsplit[imgsplit.length - 1] ?? cfg.img
-           const url ='' + 'svg/' + imgurl.replace('.png', '.svg')
+           const url = process.env.BASE_URL + 'svg/' + imgurl.replace('.png', '.svg')
 
             item1.attr({
               x: -width / 2,

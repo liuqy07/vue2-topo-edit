@@ -105,7 +105,7 @@ export default {
     },
   },
   anchorPointStyles: {
-    r:         5,
+    r:         4,
     fill:      '#fff',
     stroke:    '#1890FF',
     lineWidth: 1,

@@ -193,11 +193,10 @@ const events = {
     console.log('nodeState:selected')
     const type = group.cfg.item._cfg.model.type
     const node = group.getChildByIndex(0)
-    // const text = group.getChildByIndex(1)
-    const { attrs } = node
-    const circel_r = attrs.width >= attrs.height ? attrs.width : attrs.height
-    node.attr('r', (circel_r / 2 + 2))
+    const text = group.getChildByIndex(1)
+    node.attr('r', 25)
     const { activeStyle, defaultStyle } = getItemStyle.call(this, 'node', group, 'selected')
+
     if (value) {
       const textStyle = activeStyle.labelCfg && activeStyle.labelCfg.style ? activeStyle.labelCfg.style : {}
       //  选中元素增加背景和动画
@@ -237,23 +236,23 @@ const events = {
       group.attrs.opacity = '1'
       const r = group.cfg.item._cfg.model.width ? group.cfg.item._cfg.model.width / 2 + 4 : group.cfg.item._cfg.model.style.width / 2 + 2
       group.find((element) => {
-        // if (element.get('name') && element.get('name').indexOf('backAnimak') > -1) {
-        //   animateArry.push(element)
-        //   const color = store.state.topo.alarmlevel.node.filter((el) => {
-        //     return el.name == name
-        //   })[0].fill
-          element.attrs.fill = 'red'
-        // }
+        if (element.get('name') && element.get('name').indexOf('backAnimak') > -1) {
+          animateArry.push(element)
+          const color = store.state.topo.alarmlevel.node.filter((el) => {
+            return el.name == name
+          })[0].fill
+          element.attrs.fill = color
+        }
       })
 
       if (animateArry.length == 0) {
         let color = 'orange'
-        // if (store.state.topo && store.state.topo.alarmlevel && store.state.topo.alarmlevel.node) {
-        //   const matched = store.state.topo.alarmlevel.node.filter((el) => el.name === name)
-        //   if (matched.length > 0 && matched[0].fill) {
-        //     color = matched[0].fill
-        //   }
-        // }
+        if (store.state.topo && store.state.topo.alarmlevel && store.state.topo.alarmlevel.node) {
+          const matched = store.state.topo.alarmlevel.node.filter((el) => el.name === name)
+          if (matched.length > 0 && matched[0].fill) {
+            color = matched[0].fill
+          }
+        }
         back1 = group.addShape('circle', {
           zIndex: -3,
           attrs: {
@@ -556,72 +555,81 @@ const events = {
     if (!activeStyle) return
     if (value) {
       if (activeStyle.animate === true) {
-
-        this.runAnimate(group, activeStyle.animationType || 'ball',stroke);
-
-      }
-      else if (typeof activeStyle.animate === 'function') {
-        activeStyle.animate.call(this, group);
-      }
-       else {
-        setStyle(path, activeStyle);
+        this.runAnimate(group, activeStyle.animationType || 'ball', stroke)
+      } else if (typeof activeStyle.animate === 'function') {
+        activeStyle.animate.call(this, group)
+      } else {
+        setStyle(path, activeStyle)
         if (endArrow) {
-          path.attr('endArrow', endArrow === true ? true : {
-            path: endArrow.path,
-            fill: activeStyle.stroke || originStyle.stroke,
-          });
+          path.attr(
+            'endArrow',
+            endArrow === true
+              ? true
+              : {
+                  path: endArrow.path,
+                  fill: activeStyle.stroke || originStyle.stroke
+                }
+          )
         }
         if (startArrow) {
-          path.attr('startArrow', startArrow === true ? true : {
-            path: startArrow.path,
-            fill: activeStyle.stroke || originStyle.stroke,
-          });
+          path.attr(
+            'startArrow',
+            startArrow === true
+              ? true
+              : {
+                  path: startArrow.path,
+                  fill: activeStyle.stroke || originStyle.stroke
+                }
+          )
         }
       }
     } else {
-
       if (activeStyle.animate === true) {
-        stroke = {stroke:'#1890FF',lineWidth:'1'}
+        stroke = { stroke: '#1890FF', lineWidth: '1' }
         // 停止动画
-        this.stopAnimate(group, activeStyle.animationType || 'dash', stroke);
-
+        this.stopAnimate(group, activeStyle.animationType || 'dash', stroke)
       } else if (typeof activeStyle.animate === 'function') {
-        activeStyle.animate.call(this, group, 'stop');
+        activeStyle.animate.call(this, group, 'stop')
       } else {
-        setStyle(path, defaultStyle);
+        setStyle(path, defaultStyle)
         if (endArrow) {
-          path.attr('endArrow', endArrow === true ? true : {
-            path: endArrow.path,
-            fill: defaultStyle.stroke || activeStyle.stroke || originStyle.stroke,
-          });
+          path.attr(
+            'endArrow',
+            endArrow === true
+              ? true
+              : {
+                  path: endArrow.path,
+                  fill: defaultStyle.stroke || activeStyle.stroke || originStyle.stroke
+                }
+          )
         }
         if (startArrow) {
-          path.attr('startArrow', startArrow === true ? true : {
-            path: startArrow.path,
-            fill: defaultStyle.stroke || activeStyle.stroke || originStyle.stroke,
-          });
+          path.attr(
+            'startArrow',
+            startArrow === true
+              ? true
+              : {
+                  path: startArrow.path,
+                  fill: defaultStyle.stroke || activeStyle.stroke || originStyle.stroke
+                }
+          )
         }
       }
     }
   },
 
-
   'edgeState:alarm-deafult'(value, group, stroke) {
-    const path = group.getChildByIndex(0);
-    const { endArrow, startArrow } = path.get('attrs');
-    const { activeStyle, defaultStyle, originStyle } = getItemStyle.call(this, 'edge', group, 'alarm-deafult');
-    if (!activeStyle) return;
+    const path = group.getChildByIndex(0)
+    const { endArrow, startArrow } = path.get('attrs')
+    const { activeStyle, defaultStyle, originStyle } = getItemStyle.call(this, 'edge', group, 'alarm-deafult')
+    if (!activeStyle) return
     if (value) {
       if (activeStyle.animate === true) {
-
-        this.runAnimate(group, activeStyle.animationType || 'ball',stroke);
-
-      }
-      else if (typeof activeStyle.animate === 'function') {
-        activeStyle.animate.call(this, group);
-      }
-       else {
-        setStyle(path, activeStyle);
+        this.runAnimate(group, activeStyle.animationType || 'ball', stroke)
+      } else if (typeof activeStyle.animate === 'function') {
+        activeStyle.animate.call(this, group)
+      } else {
+        setStyle(path, activeStyle)
         if (endArrow) {
           path.attr(
             'endArrow',

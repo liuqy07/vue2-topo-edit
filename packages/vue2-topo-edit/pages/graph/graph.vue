@@ -1,10 +1,10 @@
 <template>
   <div class="root" style="width: 100%; height: 100%;">
-    <el-button type="primary" @click="clickgraph"> 123123 </el-button>
-    <item-panel class="itemPanel" :imgurl="imgurl"  />
+    <el-button @click="clickgraph" v-show="false"> 123123 </el-button>
+    <item-panel class="itemPanel" :imgurl="imgurl"  v-if="isEdit"/>
     <div :id="domId" ref="canvasPanel" class="canvasPanel" @dragover.prevent />
 
-    <el-drawer title="属性面板"  :visible.sync="configVisible">
+    <el-drawer title="属性面板" v-model="configVisible" :direction="direction">
       <div id="configPanel">
         <el-collapse v-model="activeNames" v-if="configType == 'node'">
           <solt>
@@ -178,11 +178,7 @@ import ItemPanel from "./ItemPanel.vue";
 import topoData from "./data";
 // import data from "./data.js";
 import { imglistAll as imglistAll1, imgurl } from "../static/static";
-// import { reactive, toRaw } from "vue";
-
-// import Vue from 'vue'
-// import ElementUI from 'element-ui';
-// Vue.use(ElementUI);
+import { reactive, toRaw } from "vue";
 
 export default {
   name: "graphVue",
@@ -190,7 +186,7 @@ export default {
     isEdit: {
       type: Boolean,
       default: ()=>{
-        return true
+        return false
       }
     },
     imgurl: {
@@ -205,12 +201,6 @@ export default {
         return "canvasPanel";
       },
     },
-    width: {
-      type: String,
-    },
-    height: {
-       type: String,
-    }
   },
   components: {
     ItemPanel,
@@ -218,7 +208,6 @@ export default {
   data() {
     return {
       // isEdit: true,
-      
       imglistAll1: imglistAll1,
       dropCombo: false,
       graph: {},
@@ -380,7 +369,8 @@ export default {
       // console.log("S", graphdata, this.graph.getNodes());
     },
     getImageUrl(name) {
-      return  require(`/src/assets/images/topo/${name}`)
+      // return new URL(`/src/assets/images/topo/${name}`, import.meta.url).href;
+       return require(`@@/vue2-topo-edit/img/${name}`)
     },
     changeingsrc() {},
     deepToRaw(obj) {
@@ -394,7 +384,7 @@ export default {
 
       const rawObj = Array.isArray(obj) ? [] : {};
       for (const key in obj) {
-        rawObj[key] = this.deepToRaw(obj[key]);
+        rawObj[key] = this.deepToRaw(toRaw(obj[key]));
       }
       return rawObj;
     },
@@ -483,6 +473,7 @@ export default {
 
     isOutsideCombo(point, combo) {
       if (!combo || !point) return true;
+
       // 考虑 Combo 的 padding 和折叠状态
       const bbox = combo.getBBox();
       const padding = combo.getModel().padding || 0;
@@ -638,15 +629,13 @@ export default {
 
       this.graph.on(
         "before-edge-add",
-        ({ source, target, sourceAnchor, targetAnchor }) => {
+        ({ source, target }) => {
           console.log(source, target);
           setTimeout(() => {
             this.graph.addItem("edge", {
               id: `${+new Date() + (Math.random() * 10000).toFixed(0)}`, // edge id
               source: source.get("id"),
               target: target.get("id"),
-              sourceAnchor,
-              targetAnchor,
               label: "",
               labelCfg: {
                 style: {
@@ -680,10 +669,10 @@ export default {
           this.labelCfg = Object.assign(this.labelCfg, model.labelCfg);
           break;
         case "edge":
-          lineDash = this.configLineData?.style?.lineDash ?? [];
+          lineDash = this.configLineData?.style?.lineDash ?? reactive([]);
 
           this.line = Object.assign(this.configLineData, model);
-          this.line.style.lineDash = JSON.stringify(lineDash);
+          this.line.style.lineDash = JSON.stringify(toRaw(lineDash));
           console.log("this.line", this.line, this.labelCfgLine);
 
           break;
@@ -705,7 +694,7 @@ export default {
           break;
         case "edge":
           console.log("this.line", this.line);
-          model = this.configLineData;
+          model = toRaw(this.configLineData);
           console.log("model======>", model);
 
           this.graph.updateItem(this.line.id, model);
@@ -828,27 +817,6 @@ export default {
       comboNode.shape = "img-node";
       comboNode.label = " ";
 
-      // const modelNode = {
-      //   id: this.guid(),
-      //   comboId: combo.get("id"),
-      //   level: "OLT",
-      //   label: " ",
-      //   labelCfg: toRaw(this.labelCfg),
-      //   width: 40,
-      //   height: 40,
-      //   type: "img-node",
-      //   img: "olt_1.png",
-      //   style: {
-      //     fill: "",
-      //     width: 40,
-      //     height: 40,
-      //   },
-      //   // 坐标
-      //   x,
-      //   y,
-      // };
-      //  this.addimgNode(JSON.stringify(comboNode), { x, y }, combo1);
-      // this.graph.addItem("node", modelNode);
       this.$nextTick(() => {
         this.graph.updateCombo(combo1);
         setTimeout(() => {
