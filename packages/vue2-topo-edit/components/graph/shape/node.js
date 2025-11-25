@@ -24,7 +24,7 @@ function getStyle(options, cfg) {
       ...cfg.labelCfg,
       style: {
         ...nodeLabelStyles.style,
-        ...(cfg.labelCfg ? cfg.labelCfg.style : {}),
+        ...(cfg?.labelCfg?.style ??{}),
       },
     },
     // 图标样式
@@ -44,29 +44,29 @@ function getStyle(options, cfg) {
 }
 
 export default (G6) => {
-    // 从 base-node 中扩展方形节点
-    G6.registerNode(
-      "img-ifit",
-      {
-        shapeType: "circle",
-        // 当前节点的样式集合
-        getShapeStyle(cfg) {
-          let circel_r = cfg.width>= cfg.height? cfg.width:cfg.height
-          const r = circel_r/2 + 2 || 20;
-          return getStyle.call(
-            this,
-            {
-              r, // 半径
-          // 将图形中心坐标移动到图形中心, 用于方便鼠标位置计算
-          x: 0,
-          y: 0,
-            },
-            cfg
-          );
-        },
+  // 从 base-node 中扩展方形节点
+  G6.registerNode(
+    "img-ifit",
+    {
+      shapeType: "circle",
+      // 当前节点的样式集合
+      getShapeStyle(cfg) {
+        let circel_r = cfg.width >= cfg.height ? cfg.width : cfg.height;
+        const r = circel_r / 2 + 2 || 20;
+        return getStyle.call(
+          this,
+          {
+            r, // 半径
+            // 将图形中心坐标移动到图形中心, 用于方便鼠标位置计算
+            x: 0,
+            y: 0,
+          },
+          cfg
+        );
       },
-      "base-node-ifit"
-    );
+    },
+    "base-node-ifit"
+  );
 
   // 注册父元素的节点类型
   G6.registerNode(
@@ -83,7 +83,7 @@ export default (G6) => {
           {
             width,
             height,
-            radius:20,
+            radius: 20,
             // 将图形中心坐标移动到图形中心, 用于方便鼠标位置计算
             x: -width / 2,
             y: -height / 2,
@@ -94,8 +94,6 @@ export default (G6) => {
     },
     "base-node-ifit"
   );
-
-
 
   // 注册父元素的节点类型
   G6.registerNode(
@@ -111,7 +109,7 @@ export default (G6) => {
           {
             width,
             height,
-            radius:20,
+            radius: 20,
             // 将图形中心坐标移动到图形中心, 用于方便鼠标位置计算
             x: -width / 2,
             y: -height / 2,
@@ -130,15 +128,15 @@ export default (G6) => {
       shapeType: "circle",
       // 当前节点的样式集合
       getShapeStyle(cfg) {
-        let circel_r = cfg.width>= cfg.height? cfg.width:cfg.height
-        const r = circel_r/2 + 2 || 20;
+        let circel_r = cfg.width >= cfg.height ? cfg.width : cfg.height;
+        const r = circel_r / 2 + 2 || 20;
         return getStyle.call(
           this,
           {
             r, // 半径
-        // 将图形中心坐标移动到图形中心, 用于方便鼠标位置计算
-        x: 0,
-        y: 0,
+            // 将图形中心坐标移动到图形中心, 用于方便鼠标位置计算
+            x: 0,
+            y: 0,
           },
           cfg
         );

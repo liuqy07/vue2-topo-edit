@@ -5,8 +5,9 @@ export default {
       label: "SD-JN-SHMJ-A.LEAF-2.MCN.CX600-X8A-1",
       ip: "150.139.0.212",
       layer: "IPRAN_B",
-      img: "ipran_b_1.png",
+      img: "163.png",
       radio: 1,
+      imgSouce:'',
       type: "img-node",
       style: {
         width: 45,
@@ -85,7 +86,7 @@ export default {
     {
       source: "132154_015230016027",
       target: "132154_150139000011",
-      offset: -10,
+
       label: "1111",
       labelCfg: {
         autoRotate: true,
@@ -102,7 +103,7 @@ export default {
     {
       source: "132154_150139000011",
       target: "132154_015230016023",
-      offset: -10,
+
       labelCfg: {
         autoRotate: true,
         refY: 10,
@@ -119,7 +120,6 @@ export default {
     {
       source: "132154_015230016023",
       target: "132154_015230016024",
-      offset: -10,
       labelCfg: {
         autoRotate: true,
         refY: 10,

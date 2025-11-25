@@ -1,6 +1,6 @@
 <template>
   <div class="root" style="width: 100%; height: 100%;">
-    <el-button @click="clickgraph" v-show="false"> 123123 </el-button>
+    <!-- <el-button @click="clickgraph" v-show="false"> 123123 </el-button> -->
     <item-panel class="itemPanel" :imgurl="imgurl"  v-if="isEdit"/>
     <div :id="domId" ref="canvasPanel" class="canvasPanel" @dragover.prevent />
 
@@ -407,7 +407,6 @@ export default {
         },
         handleMenuClick(target, item) {
           const { id } = target;
-
           if (id) {
             vm[id](item);
           }

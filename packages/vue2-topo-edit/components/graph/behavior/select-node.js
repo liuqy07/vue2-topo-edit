@@ -44,7 +44,6 @@ export default G6 => {
     
     onNodeClick (e) {
       if (!this.shouldBegin(e)) return;
-       console.log("123132",)
       // 先将所有当前是 click 状态的节点/edge 置为非 selected 状态
       if( e.item.getModel().type == 'img-cloud'){
         return  false

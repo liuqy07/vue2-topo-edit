@@ -16,6 +16,16 @@ module.exports = {
         '@@': path.resolve(__dirname, 'packages')
       }
     },
+    output: {
+      library: 'vue2TopoEdit',
+      libraryTarget: 'umd',
+      umdNamedDefine: true,
+      globalObject: 'this'
+    },
+    optimization: {
+      usedExports: true, // 启用tree-shaking
+      minimize: true     // 启用压缩
+    },
     module: {
       rules: [
         {
@@ -23,9 +33,7 @@ module.exports = {
           include: [path.resolve(__dirname, "packages/vue2-topo-edit/img")],
           exclude: [path.resolve(__dirname, 'src/assets/images/topo')],
           type: 'asset',
-          parser: { dataUrlCondition: {
-            maxSize: Infinity 
-          } }, // 关键修改点
+          parser: { dataUrlCondition: { maxSize: Infinity } },
           generator: { filename: 'img/[name].[hash:8][ext]' }
         },
         {
@@ -34,7 +42,16 @@ module.exports = {
           use: {
             loader: 'babel-loader',
             options: {
-              // 原tap回调中的options会合并到这里
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    targets: { browsers: ['> 1%', 'last 2 versions', 'not ie < 11'] },
+                    corejs: 3,
+                    useBuiltIns: 'usage'
+                  }
+                ]
+              ]
             }
           }
         }

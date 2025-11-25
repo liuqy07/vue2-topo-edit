@@ -1,8 +1,7 @@
 <template>
-  <div style="width: 1500px; height: 500px;">
-      <graph :isEdit="false"/>
-       <!-- <span>1312312</span>
-       <div>12312312</div> -->
+  <div :style="{width: width, height: height}">
+      <!-- <graph :isEdit="isEdit" /> -->
+       <span>我是topoedit</span>
   </div>
 </template>
 
@@ -10,12 +9,30 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui';
 Vue.use(ElementUI);
-import graph from './pages/graph/graph.vue';
+// import graph from './pages/graph/graph.vue';
 export default {
   name: 'vue2TopoEdit',
-  components: {
-    graph,
+  props:{
+    isEdit:{
+      type:Boolean,
+      default:()=>{
+        return true
+      }
+    },
+     width:{
+      type:String,
+      default:()=>{
+        return '100%'
+      }
+    },
+    height:{
+      type:String,
+      default:()=>{
+        return '10px'
+      }
+    }
   },
+  components: {},
 }
 </script>
 

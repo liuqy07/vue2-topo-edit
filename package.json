@@ -1,6 +1,6 @@
 {
   "name": "vue2-topo-edit",
-  "version": "2.0.73",
+  "version": "2.0.79",
   "description": "支持 Vue 2 的 Vue.js 单文件组件模板",
   "main": "lib/vue2-topo-edit.umd.js",
   "files": [

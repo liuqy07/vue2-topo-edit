@@ -5,13 +5,12 @@
 
 import registerFactory from "./register-factory";
 
-export default (G6, config, vue, container = "canvasPanel") => {
+export default (G6, config, registerObj, container = "canvasPanel") => {
   const options = Object.assign(
     {
       container: container,
       width: window.innerWidth,
       height: window.innerHeight,
-      // renderer:       'svg',
       fitViewPadding: 20,
       animate: true,
       animateCfg: {
@@ -20,7 +19,6 @@ export default (G6, config, vue, container = "canvasPanel") => {
       },
       layout: {
         type: "dagre",
-        // rankdir: 'LR',
         nodesep: 30,
         ranksep: 30,
       },
@@ -50,10 +48,11 @@ export default (G6, config, vue, container = "canvasPanel") => {
           stroke: "#aab7c3",
           zIndex: 100,
           lineAppendWidth: 10, // 防止线太细没法点中
-          /* startArrow:      {
-            path: 'M 0,0 L 8,4 L 7,0 L 8,-4 Z',
-            fill: '#aab7c3',
-        }, */
+          startArrow: {
+            path: "M 0,0 L 8,4 L 7,0 L 8,-4 Z",
+            fill: "#aab7c3",
+            stroke: "#aab7c3",
+          },
           endArrow: {
             path: "M 0,0 L 8,4 L 7,0 L 8,-4 Z",
             fill: "#aab7c3",
@@ -61,25 +60,27 @@ export default (G6, config, vue, container = "canvasPanel") => {
           },
         },
       },
-      // 默认节点不同状态下的样式集合
       nodeStateStyles: {
-        "nodeState:default": {
-          fill: "#ffffff",
-          opacity: 0,
-          // stroke: '#E7F7FE',
-        },
         "nodeState:hover": {
-          fill: "#ffffff",
+          fill: "#E7F7FE",
         },
         "nodeState:selected": {
-          fill: "#ffffff",
-          // stroke: '#1890FF',
+          fill: "#E7F7FE",
+          stroke: "#1890FF",
+        },
+        "nodeState:alarmLow": {
+          fill: "pink",
+        },
+        "nodeState:alarmMiddle": {
+          fill: "green",
+        },
+        "nodeState:alarmHigh": {
+          fill: "red",
         },
       },
       // 默认边不同状态下的样式集合
       edgeStateStyles: {
         "edgeState:default": {
-          // stroke:   '#aab7c3',
           endArrow: {
             path: "M 0,0 L 8,4 L 7,0 L 8,-4 Z",
             fill: "#aab7c3",
@@ -121,7 +122,7 @@ export default (G6, config, vue, container = "canvasPanel") => {
     });
 
     // 注册自定义节点/边等
-    registerFactory(G6, vue);
+    registerFactory(G6, registerObj);
   } else {
     console.warn("未找到注册节点!");
   }

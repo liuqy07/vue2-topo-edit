@@ -8,12 +8,11 @@ import shape from './shape/exports';
 import behavior from './behavior/exports';
 import registerEdges from './shape/edges/base-edge';
 
-export default (G6,vue) => {
+export default (G6, registerObj) => {
   // 注册图形
-  console.log("vue",vue)
-  shape(G6,vue);
+  shape(G6, registerObj);
   // 注册行为
-  behavior(G6);
+  behavior(G6, registerObj);
   // 注册边
   registerEdges(G6);
 };
